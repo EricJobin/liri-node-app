@@ -1,29 +1,36 @@
 require("dotenv").config();
+var axios = require("axios");
 var keys = require("./keys.js");
 // var spotify = new Spotify(keys.spotify);
 var inquirer = require("inquirer");
+// var bandsintown = require('bandsintown')('codingbootcamp');
 
 inquirer
     .prompt([
         {
         type: "list",
         message: "What would you like to do?",
-        choices: ["Concert-This", "Spotify-This-Song", "Movie-This", "Do-What-It-Says", "Quit"],
+        choices: ["Concert-This - Find upcoming concert events for an artist!", 
+            "Spotify-This-Song - Find information about a song", 
+            "Movie-This - Find information about a movie", 
+            "Do-What-It-Says - This will do a search from the content of a text file", 
+            "Quit"],
         name: "programFunction"
         },
     ])
     .then(function(inquirerResponse) {
         
-        if (inquirerResponse.programFunction == "Concert-This") {
-        console.log("Concert-This");
+        if (inquirerResponse.programFunction == "Concert-This - Find upcoming concert events for an artist!") {
+        // console.log("Concert-This");
+        concertThis();
         }
-        else if (inquirerResponse.programFunction == "Spotify-This-Song") {
+        else if (inquirerResponse.programFunction == "Spotify-This-Song - Find information about a song") {
             console.log("Spotify-This-Song");
         }
-        else if (inquirerResponse.programFunction == "Movie-This") {
+        else if (inquirerResponse.programFunction == "Movie-This - Find information about a movie") {
             console.log("Movie-This");
         }
-        else if (inquirerResponse.programFunction == "Do-What-It-Says") {
+        else if (inquirerResponse.programFunction == "Do-What-It-Says - This will do a search from the content of a text file") {
             console.log("Do-What-It-Says");
         }
         else if (inquirerResponse.programFunction == "Quit") {
@@ -34,9 +41,37 @@ inquirer
         }
     });
 
+concertThis = function(){
+    inquirer
+    .prompt([
+        {
+            type: "input",
+            message: "What band or artist are you looking for?",
+            name: "artist"
+        },])
+    .then(function(inquirerResponse) {
+        var artist = escape(inquirerResponse.artist);
+        var queryUrl= (`https://rest.bandsintown.com/artists/${artist}/events?app_id=codingbootcamp`)
+        console.log(queryUrl);
+
+        axios.get(queryUrl).then(
+            function(response) {
+                console.log(response.data)
+                //   console.log(response.data.Year)
+        });
+
+        // bandsintown
+        // .getArtistEventList('Skrillex')
+        // .then(function(events) {
+        //     // return array of events
+        //     console.log(events)
+        // });
 
 
-// 9. Make it so liri.js can take in one of the following commands:
+
+    })
+
+}
 
 
 //    * `concert-this`
@@ -46,6 +81,13 @@ inquirer
 //      * Venue location
 //      * Date of the Event (use moment to format this as "MM/DD/YYYY")
 //url: (`"https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp"`) 
+
+
+
+
+
+
+
 
 //-------------------------------------------------------------------------------
 
