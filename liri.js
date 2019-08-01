@@ -1,9 +1,11 @@
 require("dotenv").config();
 var axios = require("axios");
 var keys = require("./keys.js");
+// var spotify = require('spotify');
 // var spotify = new Spotify(keys.spotify);
 var inquirer = require("inquirer");
 var moment = require("moment");
+
 
 // Commenting Out Menu selection for development purposes
 
@@ -78,28 +80,51 @@ listConcert =function(concerts, artist){
 
 //-------------------------------Spotify-This-Song------------------------------------------------
 
-spotThis = function(){
-    inquirer
-    .prompt([
-        {
-            type: "input",
-            message: "What song are you looking for?",
-            name: "song"
-        },])
-    .then(function(inquirerResponse) {
-        // var song = inquirerResponse.song;
-        // var songURL = escape(song);
-        // var queryUrl= (`https://rest.bandsintown.com/artists/${songURL}/events?app_id=codingbootcamp`)
-        // console.log(queryUrl);
+// spotThis = function(){
 
-        // axios.get(queryUrl).then(
-        //     function(response) {
-        //         var concerts = response.data;
-        //         listConcert(concerts, artist);
-        // });
-    })
 
-}
+//     var spotify = require('spotify');
+//     // var spotify = new Spotify(keys.spotify);
+
+
+
+//     inquirer
+//     .prompt([
+//         {
+//             type: "input",
+//             message: "What song are you looking for?",
+//             name: "song"
+//         },])
+//     .then(function(inquirerResponse) {
+//         var song = inquirerResponse.song;
+//         // var songURL = escape(song);
+//         // var queryUrl= (`https://rest.bandsintown.com/artists/${songURL}/events?app_id=codingbootcamp`)
+//         // console.log(queryUrl);
+
+//         spotify.search({ type: 'track', query: 'dancing in the moonlight' }, function(err, data) {
+//             if ( err ) {
+//                 console.log('Error occurred: ' + err);
+//                 return;
+//             }
+//             console.log(JSON.stringify(data));
+
+
+//         });
+//     })
+// }
+
+// spotThis()
+
+//* ************  End of Test Code, comments below  ************************ */
+
+// spotify.search({ type: 'track', query: 'dancing in the moonlight' }, function(err, data) {
+//     if ( err ) {
+//         console.log('Error occurred: ' + err);
+//         return;
+//     }
+ 
+//     // Do something with 'data'
+// });
 
 //    * `spotify-this-song`
 
@@ -130,41 +155,28 @@ movieThis = function(){
         },])
     .then(function(inquirerResponse) {
         var movie = inquirerResponse.movie;
+        console.log("movie "+movie);
+        if(movie==""){movie="Mr Nobody"}
         var movieURL = escape(movie);
-        var queryUrl= (`https://rest.bandsintown.com/artists/${movieURL}/events?app_id=codingbootcamp`)
+        var queryUrl= (`http://www.omdbapi.com/?t=${movieURL}&y=&plot=short&apikey=trilogy`)
+        console.log(queryUrl)
    
-        // axios.get(queryUrl).then(
-        //     function(response) {
-        //         var concerts = response.data;
-        //         listConcert(concerts, artist);
-        // });
+        axios.get(queryUrl).then(
+            function(response) {
+                console.log(`
+                    Title: ${response.data.Title}\n
+                    Year: ${response.data.Year}\n
+                    IMDB Rating: ${response.data.imdbRating}\n
+                    Rotten Tomatoes Rating: ${response.data.Ratings[1].Value}\n
+                    Country: ${response.data.Country}\n
+                    Language: ${response.data.Language}\n
+                    Plot: ${response.data.Plot}\n
+                    Actors: ${response.data.Actors}
+                `)
+        });
     })
 
 }
-
-
-
-//    * `movie-this`
-
-// 3. `node liri.js movie-this '<movie name here>'`
-//    * This will output the following information to your terminal/bash window:
-//      ```
-//        * Title of the movie.
-//        * Year the movie came out.
-//        * IMDB Rating of the movie.
-//        * Rotten Tomatoes Rating of the movie.
-//        * Country where the movie was produced.
-//        * Language of the movie.
-//        * Plot of the movie.
-//        * Actors in the movie.
-//      ```
-
-//    * If the user doesn't type a movie in, the program will output data for the movie 'Mr. Nobody.'
-//      * If you haven't watched "Mr. Nobody," then you should: <http://www.imdb.com/title/tt0485947/>
-//      * It's on Netflix! --Not in Canada it isn't.
-
-//    * You'll use the `axios` package to retrieve data from the OMDB API. Like all of the in-class activities, the OMDB API requires an API key. You may use `trilogy`.
-
 
 //----------------------------------------do-what-it-says--------------------------------------------
 
@@ -183,6 +195,7 @@ doWhat = function(){
         }
 
         // if statements then calling stuff
+        //searchTerm=escape(searchTerm.trim())
 
         if (dataArr[0].toLowerCase() == "concert-this") {
             console.log("Concert-This "+ dataArr[1]);
