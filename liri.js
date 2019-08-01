@@ -1,8 +1,7 @@
 require("dotenv").config();
 var axios = require("axios");
 var keys = require("./keys.js");
-// var spotify = require('spotify');
-// var spotify = new Spotify(keys.spotify);
+var Spotify = require('node-spotify-api');
 var inquirer = require("inquirer");
 var moment = require("moment");
 
@@ -80,51 +79,43 @@ listConcert =function(concerts, artist){
 
 //-------------------------------Spotify-This-Song------------------------------------------------
 
-// spotThis = function(){
+spotThis = function(){
 
+    inquirer
+    .prompt([
+        {
+            type: "input",
+            message: "What song are you looking for?",
+            name: "song"
+        },])
+    .then(function(inquirerResponse) {
+        var song = inquirerResponse.song;
 
-//     var spotify = require('spotify');
-//     // var spotify = new Spotify(keys.spotify);
+        // console.log(keys)
+ 
+        var spotify = new Spotify({
+            id: keys.spotify.id,
+            secret: keys.spotify.secret
+        });
+         
+        spotify.search({ type: 'track', query: song }, function(err, data) {
+            if (err) {
+                return console.log('Error occurred: ' + err);
+            }
+            // console.log(JSON.stringify(data)); 
+            console.log(`
+                Artist: ${data.tracks.items[0].album.artists[0].name}\n
+                Song: ${data.tracks.items[0].name}\n
+                Preview Link: ${data.tracks.items[0].preview_url}\n
+                Album: ${data.tracks.items[0].album.name}\n
+            `)
+        });
+    })
+}
 
-
-
-//     inquirer
-//     .prompt([
-//         {
-//             type: "input",
-//             message: "What song are you looking for?",
-//             name: "song"
-//         },])
-//     .then(function(inquirerResponse) {
-//         var song = inquirerResponse.song;
-//         // var songURL = escape(song);
-//         // var queryUrl= (`https://rest.bandsintown.com/artists/${songURL}/events?app_id=codingbootcamp`)
-//         // console.log(queryUrl);
-
-//         spotify.search({ type: 'track', query: 'dancing in the moonlight' }, function(err, data) {
-//             if ( err ) {
-//                 console.log('Error occurred: ' + err);
-//                 return;
-//             }
-//             console.log(JSON.stringify(data));
-
-
-//         });
-//     })
-// }
-
-// spotThis()
+spotThis()
 
 //* ************  End of Test Code, comments below  ************************ */
-
-// spotify.search({ type: 'track', query: 'dancing in the moonlight' }, function(err, data) {
-//     if ( err ) {
-//         console.log('Error occurred: ' + err);
-//         return;
-//     }
- 
-//     // Do something with 'data'
-// });
 
 //    * `spotify-this-song`
 
