@@ -6,17 +6,17 @@ This is a node js application that uses the command line to search for Movies, M
 
 The following npm packages are required for this program:
 
-axios: ^0.19.0,
-dotenv: ^8.0.0,
-inquirer: ^6.5.0,
-moment: ^2.24.0,
+axios: ^0.19.0,<br/>
+dotenv: ^8.0.0,<br/>
+inquirer: ^6.5.0,<br/>
+moment: ^2.24.0,<br/>
 node-spotify-api: ^1.1.1
 
 A valid keys for Spotify, OMDB, and Bands in Town are also required.
 
 ## Program Operation
 
-After the required dependancies have been installed the program can be started by typing 'node liri.js' in the terminal.
+After the required dependencies have been installed the program can be started by typing 'node liri.js' in the terminal.
 
 Once this is done the user will be presented the following list of options:
 
@@ -57,7 +57,7 @@ If the user did not input a movie, the search will default to "Mr. Nobody" and t
 
 ### Do-What-It-Says
 
-If the user selects this option, a search for concerts, a song, or a movie will be performed depending on the contents of a file named random.txt in the same folder as the liri program.<br/>
+If the user selects this option, a search for concerts, a song, or a movie will be performed depending on the contents of a file named random.txt located in the same folder as the liri program.<br/>
 
 Examples:<br/>
 
