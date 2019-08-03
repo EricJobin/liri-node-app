@@ -20,11 +20,32 @@ After the required dependancies have been installed the program can be started b
 
 Once this is done the user will be presented the following list of options:
 
-Concert-This
-Spotify-This-Song
-Movie-This
-Do-What-It-Says
+Concert-This<br/>
+Spotify-This-Song<br/>
+Movie-This<br/>
+Do-What-It-Says<br/>
 Quit
 
-![There Should be a picture here](/images/menu.jpg?raw=true "Command to Start and Menu Select")
+![Menu](/images/menu.jpg?raw=true "Command to Start and Menu Select")
+
+### Concert-This
+
+If Concert-This is selected the user must then enter the name of a band they wish to find concerts for. A list of Concerts, their dates, and location will then be displayed.
+
+![Concert This](/images/ct.jpg?raw=true "Concert This")
+
+### Spotify-This-Song
+
+If Spotify-This-Song is selected the user will be prompted to enter the name of a song. The Artist Name, Song Title, Preview Link, and Album Name will then be displayed if the song is found.
+
+![Spotify-This-Song](/images/st.jpg?raw=true "Spotify-This-Song")
+
+If the user did not input a song, the search will default to "Ace of Spades" and the following should be displayed:
+
+![Spotify-This-Song](/images/std.jpg?raw=true "Spotify-This-Song Default")
+
+
+### Movie-This
+### Do-What-It-Says
+### Quit
 
