@@ -46,6 +46,33 @@ If the user did not input a song, the search will default to "Ace of Spades" and
 
 
 ### Movie-This
+
+If Movie-This is selected the user will be prompted to enter the name of a movie. The Movie Title, Year Released, IMDB & Rotten Tomatoes Ratings, Countries of Production, Language, Plot Summary and Staring Actors will then be displayed.
+
+![Movie-This](/images/mt.jpg?raw=true "Movie-This")
+
+If the user did not input a movie, the search will default to "Mr. Nobody" and the following should be displayed:
+
+![Movie-This](/images/mtd.jpg?raw=true "Movie-This Default")
+
 ### Do-What-It-Says
+
+If the user selects this option, a search for concerts, a song, or a movie will be performed depending on the contents of a file named random.txt in the same folder as the liri program.<br/>
+
+Examples:<br/>
+
+Concert Search
+![Do This](/images/dwisc.jpg?raw=true "Concert Search")
+
+Song Search
+![Do This](/images/dwiss.jpg?raw=true "Song Search")
+
+Movie Search
+![Do This](/images/dwism.jpg?raw=true "Movie Search")
+
+
+
 ### Quit
+
+If the user does not wish to perform any of the above functions, Quit may be selected to leave the program.
 
