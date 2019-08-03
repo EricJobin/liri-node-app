@@ -27,15 +27,12 @@ inquirer
         concertThis();
         }
         else if (inquirerResponse.programFunction == "Spotify-This-Song - Find information about a song") {
-            // console.log("Spotify-This-Song");
             spotThis();
         }
         else if (inquirerResponse.programFunction == "Movie-This - Find information about a movie") {
-            // console.log("Movie-This");
             movieThis();
         }
         else if (inquirerResponse.programFunction == "Do-What-It-Says - This will do a search from the content of a text file") {
-            console.log("Do-What-It-Says");
             doWhat()
             
         }
@@ -61,7 +58,6 @@ concertThis = function(){
         var artist = inquirerResponse.artist;
         var artistURL = escape(artist);
         var queryUrl= (`https://rest.bandsintown.com/artists/${artistURL}/events?app_id=codingbootcamp`)
-        console.log(queryUrl);
 
         axios.get(queryUrl).then(
             function(response) {
@@ -69,7 +65,6 @@ concertThis = function(){
                 listConcert(concerts, artist);
         });
     })
-
 }
 listConcert =function(concerts, artist){
     for (var x=0;x<concerts.length;x++){
@@ -125,11 +120,11 @@ movieThis = function(){
         },])
     .then(function(inquirerResponse) {
         var movie = inquirerResponse.movie;
-        console.log("movie "+movie);
+        // console.log("movie "+movie);
         if(movie==""){movie="Mr Nobody"}
         var movieURL = escape(movie);
         var queryUrl= (`http://www.omdbapi.com/?t=${movieURL}&y=&plot=short&apikey=trilogy`)
-        console.log(queryUrl)
+        // console.log(queryUrl)
    
         axios.get(queryUrl).then(
             function(response) {
@@ -194,7 +189,6 @@ doWhat = function(){
             var movie = dataArr[1];
             var movieURL = escape(movie);
             var queryUrl= (`http://www.omdbapi.com/?t=${movieURL}&y=&plot=short&apikey=trilogy`)
-            console.log(queryUrl)
     
             axios.get(queryUrl).then(
                 function(response) {
